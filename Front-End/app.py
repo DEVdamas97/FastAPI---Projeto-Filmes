@@ -1,0 +1,2 @@
+
+# pip install fastapi uvicorn streamlit requests psycopg2 dotenv
