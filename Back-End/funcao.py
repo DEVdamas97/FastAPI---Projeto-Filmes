@@ -43,7 +43,6 @@ def criar_tabela():
             conexao.close()
 
 
-
 def listar_movies():
     conexao, cursor = conectar()
     if conexao:
@@ -62,8 +61,6 @@ def listar_movies():
         finally:
             cursor.close()
             conexao.close()
-
-
 
 
 def atualizar_movies(id_filme, nova_avaliacao):
@@ -87,7 +84,7 @@ def deletar_filme(id_filme):
     if conexao:
         try:
             cursor.execute(
-                'DELETE FROM movies WHERE id = %s', (id_filme)
+                'DELETE FROM movies WHERE id = %s', (id_filme,)
             )
             conexao.commit()
         except Exception as erro:

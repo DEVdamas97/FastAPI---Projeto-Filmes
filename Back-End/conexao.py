@@ -3,6 +3,9 @@ import psycopg2
 from dotenv import load_dotenv
 import os
 
+# Instalar o arquiavo requirements.txt
+# pip install requirements.txt
+
 load_dotenv()
 
 params = {
