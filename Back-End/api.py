@@ -50,3 +50,21 @@ def catalogo():
 def adicionar_filme(titulo: str, genero: str, ano: int, avaliacao: float):
     funcao.criar_filme(titulo, genero, ano, avaliacao)
     return {"mensagem": "Filme adicionado com sucesso"}
+
+
+@app.put("/filmes/{id_filme}")
+def atualizar_filme(id_filme: int, nova_avaliacao: float):
+    funcao.atualizar_movies(id_filme, nova_avaliacao)
+    filme = funcao.buscar_movies()
+    if filme:
+        funcao.atualizar_movies(id_filme, nova_avaliacao)
+        return {"mensagem": "filme atualizado com sucesso!"}
+    return {"erro": "Filme não encontrado"}
+
+@app.delete("/filme")
+def deletar(id_filme:int):
+    funcao.deletar_filme(id_filme)
+    deletar = funcao.deletar_filme()
+    if deletar:
+        funcao.deletar(id_filme)
+        return {"mensagem": "filme deletado com sucesso"}

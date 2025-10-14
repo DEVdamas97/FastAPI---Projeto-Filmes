@@ -16,7 +16,7 @@ st.title(" Gerenciador de Filmes")
 
 # Menu lateral sidebar
 
-menu = st.sidebar.radio("Navegação", ["Catalogo", "Adicionar Filme"])
+menu = st.sidebar.radio("Navegação", ["Catalogo", "Adicionar Filme", "Atualizar Filme"])
 
 if menu == "Catalogo":
     st.subheader("Todos os Filmes 📽")
@@ -56,3 +56,19 @@ elif menu == "Adicionar Filme":
           else:
                st.error("Erro ao Adicionar o Filme")
 
+elif menu == "Atualizar Filme":
+    st.subheader("Atualizar dados de um Filme 📁")
+
+    id_filme = st.number_input("ID do filme que deseja atualizar", min_value=1, step=1)
+    nova_avaliacao = st.number_input("Nova Avaliação", min_value=1, max_value=10)
+    if st.button("Atualizar"):
+        dados = {"nova_avaliacao": nova_avaliacao}
+        response = requests.put(f"{API_URL}/filmes/{id_filme}", params=dados)
+        if response.status_code == 200:
+            data = response.json()
+            if "error" in data:
+                st.warning(data["erro"])
+            else:
+                 st.success("Filme atualizado com sucesso")
+        else:
+             st.error("Erro ao atualizar o filme")
