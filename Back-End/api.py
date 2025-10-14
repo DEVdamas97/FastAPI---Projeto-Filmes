@@ -3,6 +3,8 @@ from fastapi import FastAPI
 
 import funcao
 
+
+# Deve entrar na pasta
 # Rodar o fast api = python -m uvicorn api:app --reload
 
 # Para testar as rotas no fastapi
